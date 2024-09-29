@@ -27,8 +27,8 @@ jobs:
 
     - name: Añadir el archivo pptx al repositorio  # Añadir el archivo pptx generado por el notebook al repositorio
       run: |
-        git config --global user.email "${{ github.actor }}@users.noreply.github.com"
-        git config --global user.name "${{ github.actor }}"
+        git config --global user.email "tpmaria.antonia@gmail.com"
+        git config --global user.name "marian-tp"
         git add informe_generado.pptx  # Nombre del archivo .pptx generado por el notebook
         git commit -m "Añadir informe generado automáticamente"
         git push
