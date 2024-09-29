@@ -1,0 +1,12 @@
+mysql-connector-python==8.0.27  # Conector de MySQL para Python
+pandas==1.4.2  # Manejo de datos
+numpy==1.22.3  # Operaciones matemáticas y matrices
+matplotlib==3.5.1  # Visualización de datos
+seaborn==0.11.2  # Gráficos estadísticos
+pymysql==1.0.2  # Conector de MySQL compatible con MySQLdb
+sshtunnel==0.4.0  # Crear túneles SSH para conexiones a bases de datos
+shareplum==0.5.1  # Interacción con SharePoint
+python-pptx==0.6.21  # Creación de archivos PowerPoint
+
+# Paquetes adicionales para evitar problemas de dependencias
+openpyxl==3.0.9  # Manipulación de archivos Excel (compatibilidad con pandas)
