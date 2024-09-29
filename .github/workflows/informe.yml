@@ -1,0 +1,34 @@
+name: Generar Informe  # Nombre del flujo de trabajo
+
+on:
+  workflow_dispatch:  # Permite que el workflow se dispare manualmente mediante una solicitud HTTP o manualmente desde GitHub
+
+jobs:
+  generar_informe:
+    runs-on: macos-latest  # Usar macOS como plataforma para ejecutar el job
+    steps:
+    - name: Checkout the repository  # Paso para descargar el código del repositorio
+      uses: actions/checkout@v2
+
+    - name: Configurar Python 3.10  # Asegurarse de usar Python 3.10
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.10'
+
+    - name: Instalar dependencias  # Instalar las dependencias necesarias
+      run: |
+        pip install --upgrade pip  # Asegurarse de que pip esté actualizado
+        pip install -r requirements.txt  # Instala las dependencias desde el archivo requirements.txt
+        pip install jupyter  # Instalar Jupyter para ejecutar el notebook
+
+    - name: Ejecutar el notebook para generar el informe
+      run: |
+        jupyter nbconvert --to notebook --execute webinar_mod1_pares_esp.ipynb  # Ejecuta el notebook
+
+    - name: Añadir el archivo pptx al repositorio  # Añadir el archivo pptx generado por el notebook al repositorio
+      run: |
+        git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+        git config --global user.name "${{ github.actor }}"
+        git add informe_generado.pptx  # Nombre del archivo .pptx generado por el notebook
+        git commit -m "Añadir informe generado automáticamente"
+        git push
